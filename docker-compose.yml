@@ -95,8 +95,8 @@ services:
       - ./grafana/setup.sh:/setup.sh
     entrypoint: /setup.sh
     environment:
-      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
-      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_SECURITY_ADMIN_USER=${INTERNAL_USERNAME}
+      - GF_SECURITY_ADMIN_PASSWORD=${INTERNAL_PASSWORD}
       - GF_USERS_ALLOW_SIGN_UP=false
     restart: unless-stopped
     expose:
@@ -128,8 +128,8 @@ services:
     volumes:
       - ./caddy/:/etc/caddy/
     environment:
-      - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - ADMIN_USER=${INTERNAL_USERNAME}
+      - ADMIN_PASSWORD=${INTERNAL_PASSWORD}
     restart: unless-stopped
     networks:
       - monitor-net
